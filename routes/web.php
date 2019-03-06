@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('kategori', function(){
+	return "Hello Kategori";
+});
+
+Route::resource('kategori', 'KategoriController');
+
