@@ -20,4 +20,10 @@ Route::get('kategori', function(){
 });
 
 Route::resource('kategori', 'KategoriController');
+Route::get('layout', function (){
+    return view('layout.master');
+});
+Route::get('dashboard', function (){
+    return view('dashboard.index');
+});
 
