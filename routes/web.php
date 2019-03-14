@@ -29,3 +29,7 @@ Route::get('dashboard', function (){
 Route::get('dashboard2', function (){
     return view('dashboard.dashboard');
 });
+
+Route::get('tabel', function(){
+    return view('category.index');
+});

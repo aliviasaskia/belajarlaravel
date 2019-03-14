@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +53,59 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-        @yield('content')
+
+        
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Responsive Hover Table</h3>
+
+              <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+            <table border="1" width="100%">
+		<tr>
+			<th>ID</th>
+			<th>Nama Kategori</th>
+			<th>SLUG</th>
+			<th>Tanggal Input</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+			<th>Opsi</th>
+		</tr>
+		@foreach($kategori as $kategori)
+		<tr>
+            <td>{{ $kategori->id }}</td>
+			<td>{{ $kategori->nama_kategory }}</td>
+			<td>{{ $kategori->slug }}</td>
+			<td>{{ $kategori->tanggal_input_data }}</td>
+            <td>{{ $kategori->created_at }}</td>
+            <td>{{ $kategori->updated_at }}</td>
+			<td>
+				<a href="/kategori/edit/{{ $kategori->id }}">Edit</a>
+				|
+				<a href="/kategori/hapus/{{ $kategori->id }}">Hapus</a>
+			</td>
+		</tr>
+		@endforeach
+	</table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+    
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
