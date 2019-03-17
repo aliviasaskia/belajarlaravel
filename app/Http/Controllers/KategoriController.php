@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\modelKategori;
 
+use Illuminate\Support\Facades\DB;
+
 class KategoriController extends Controller
 {
     /**
@@ -19,6 +21,17 @@ class KategoriController extends Controller
         return view('category.index', compact('kategori'));
 
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('cari');
+        $hasil = modelKategori::where('nama_kategory', 'LIKE', '%' . $query . '%')->paginate(10);
+        return view('category.result', compact('hasil', 'query'));
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     /**
      * Show the form for creating a new resource.
@@ -42,7 +55,9 @@ class KategoriController extends Controller
         DB::table('kategori')->insert([
             'nama_kategory' => $request->nama_kategory,
             'slug' => $request->slug,
-            'tanggal_input_data' => $request->tanggal_input_data
+            'tanggal_input_data' => $request->tanggal_input_data,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at
         ]);
         // alihkan halaman ke halaman 
         return redirect('/kategori');
@@ -67,7 +82,8 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kategori = DB::table('kategori')->where('id',$id)->get();
+        return view('category.edit',['kategori' => $kategori]);
     }
 
     /**
@@ -77,9 +93,16 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        DB::table('kategori')->where('id',$request->id)->update([
+            'nama_kategory' => $request->nama_kategory,
+            'slug' => $request->slug,
+            'tanggal_input_data' => $request->tanggal_input_data,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at
+        ]);
+            return redirect('/kategori');
     }
 
     /**
@@ -90,11 +113,8 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('kategori')->where('id',$id)->delete();
+        return redirect('/kategori');
     }
-    public function tambah()
-    {
-        //memanggil view tambah
-        return view('tambah');
-    }
+   
 }

@@ -55,23 +55,114 @@
   <div class="content-wrapper">
 
         
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Responsive Hover Table</h3>
+       <!-- Content Header (Page header) -->
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+<h1>Data Kategori Film</h1>
+<br>
+     <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Form Search</h3>
+            </div>
+            <form action="{{ url('query') }}" method="GET">
 
-              <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-5">
+                  <div class="input-group">
+                <div class="input-group-btn">
+                  <button type="submit" class="btn btn-danger">Cari</button>
+                </div>
+                <!-- /btn-group -->
+                
+                <input type="text" class="form-control" name="cari" placeholder="Search Data Kategori..">
+              </div>
                 </div>
               </div>
             </div>
+          </form>
             <!-- /.box-header -->
+             <!-- /.box-body -->
+          </div>
+    
+          <div class="box box-danger">
+            <div class="box-header">
+              <h3 class="box-title">Data Kategori</h3>
+            </div>
+            
+            <div class="box-body">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                Tambah Data
+              </button>
+              
+              <div class="modal fade" id="modal-default">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Masukkan Data Kategori</h4>
+              </div>
+              <form class="form-horizontal" action="/inputdata/store" method="post">
+              {{csrf_field()}}
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputnama" class="col-sm-2 control-label">Nama Kategori</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputnama" placeholder="Nama Kategori" name="nama_kategory">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputslug" class="col-sm-2 control-label">Slug</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputslug" placeholder="Slug" name="slug">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputtgl" class="col-sm-2 control-label">Tanggal Input Data</label>
+                  <div class="col-sm-10">
+                    <input type="date" class="form-control" id="inputtgl" placeholder="Tanggal Input Data" name="tanggal_input_data">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputcreated" class="col-sm-2 control-label">Created At</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputcreated" placeholder="Created At" name="created_at">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputupdated" class="col-sm-2 control-label">Updated At</label>
+                  <div class="col-sm-10">
+                    <input type="datetime" class="form-control" id="inputupdated" placeholder="Updated At" name="updated_at">
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+            
+              <!-- /.box-footer -->
+  
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Kembali</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        </form>
+
             <div class="box-body table-responsive no-padding">
             <table border="1" width="100%">
 		<tr>
@@ -92,9 +183,9 @@
             <td>{{ $kategori->created_at }}</td>
             <td>{{ $kategori->updated_at }}</td>
 			<td>
-				<a href="/kategori/edit/{{ $kategori->id }}">Edit</a>
+				<a href="/edit/edit/{{ $kategori->id }}">Edit</a>
 				|
-				<a href="/kategori/hapus/{{ $kategori->id }}">Hapus</a>
+				<a href="/hapus/destroy/{{ $kategori->id }}">Hapus</a>
 			</td>
 		</tr>
 		@endforeach
@@ -109,6 +200,9 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+
+  
   <footer class="main-footer">
         @include('layout.mainfooter')
   </footer>

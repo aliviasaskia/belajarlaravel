@@ -12,7 +12,7 @@ body {
 	    <h2>Daftar Kategori Film</h2>
     </center>
  
-	<a href="kategori/tambah"> + Tambah Data</a>
+	<a href="/inputdata/store"> + Tambah Data</a>
 	
 	<br/>
 	<br/>
@@ -21,7 +21,7 @@ body {
 		<tr>
 			<th>ID</th>
 			<th>Nama Kategori</th>
-			<th>SLUG</th>
+			<th>Slug</th>
 			<th>Tanggal Input</th>
             <th>Created At</th>
             <th>Updated At</th>
@@ -36,9 +36,9 @@ body {
             <td>{{ $kategori->created_at }}</td>
             <td>{{ $kategori->updated_at }}</td>
 			<td>
-				<a href="/kategori/edit/{{ $kategori->id }}">Edit</a>
+				<a href="/edit/edit/{{ $kategori->id }}">Edit</a>
 				|
-				<a href="/kategori/hapus/{{ $kategori->id }}">Hapus</a>
+				<a href="/hapus/destroy{{ $kategori->id }}">Hapus</a>
 			</td>
 		</tr>
 		@endforeach

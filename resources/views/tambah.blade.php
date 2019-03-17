@@ -3,7 +3,7 @@
 	<title>Tutorial Membuat CRUD Pada Laravel - www.malasngoding.com</title>
 </head>
 <body>
-	<form action="/kategori/store" method="post">
+	<form action="/inputdata/store" method="post">
 		{{ csrf_field() }}
 		nama_kategory 
         <input type="text" name="nama_kategory" required="required"> <br/>

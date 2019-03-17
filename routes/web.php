@@ -33,3 +33,10 @@ Route::get('dashboard2', function (){
 Route::get('tabel', function(){
     return view('category.index');
 });
+
+Route::get('query', 'KategoriController@search');
+Route::get('/hapus/destroy/{id}','KategoriController@destroy');
+Route::post('/datakategori/update','KategoriController@update');
+Route::get('/edit/edit/{id}','KategoriController@edit');
+Route::post('/inputdata/store','KategoriController@store');
+
